@@ -48,6 +48,7 @@ export function SchedulingComplete(){
             <Footer>
                 <ConfirmButton
                     title="OK"
+                    onPress={handleConfirm}
                 />
             </Footer>
         </Container>
