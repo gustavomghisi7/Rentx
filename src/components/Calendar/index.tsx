@@ -16,10 +16,10 @@ LocaleConfig.locales['pt-br'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-br';
 
 interface MarkedDateProps {
-    [date: string] : {
+    [date: string]: {
         color: string;
         textColor: string;
-        disabled: boolean;
+        disabled?: boolean;
         disableTouchEvent?: boolean;
     }
 }
@@ -33,11 +33,11 @@ interface DayProps {
 }
 
 interface CalendarProps {
-    marketDates: MarkedDateProps;
+    markedDates: MarkedDateProps;
     onDayPress: DateCallbackHandler;
 }
 
-function Calendar({ marketDates, onDayPress } : CalendarProps){
+function Calendar({ markedDates, onDayPress } : CalendarProps){
     const theme = useTheme();
 
     return(
@@ -73,7 +73,7 @@ function Calendar({ marketDates, onDayPress } : CalendarProps){
             firstDay={1}
             minDate={new Date()}
             markingType="period"
-            markedDates={marketDates}
+            markedDates={markedDates}
             onDayPress={onDayPress}
         />
     );
