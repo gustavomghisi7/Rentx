@@ -1,28 +1,33 @@
 import React, { useState, useRef } from 'react';
 import { FlatList, ViewToken } from 'react-native';
+import FastImage from 'react-native-fast-image';
+
+import { Bullet } from '../Bullet';
 
 import {
     Container,
     ImageIndexes,
-    ImageIndex,
     CarImageWrapper,
     CarImage
 } from './styles';
 
 interface Props {
-    imageUrl: string[];
+    imagesUrl: {
+        id: string;
+        photo: string;
+    }[];
 }
 
 interface ChangeImageProps {
-    viewableitems: ViewToken[];
+    viewableItems: ViewToken[];
     changed: ViewToken[];
 }
 
-export function ImageSlider({imageUrl} : Props){
+export function ImageSlider({imagesUrl} : Props){
     const [imageIndex, setImageIndex] = useState(0);
 
     const indexChanged = useRef((info: ChangeImageProps) => {
-        const index = info.viewableitems[0].index!;
+        const index = info.viewableItems[0].index!;
         setImageIndex(index);
     });
 
@@ -30,9 +35,9 @@ export function ImageSlider({imageUrl} : Props){
         <Container>
             <ImageIndexes>
                 {
-                    imageUrl.map((item, index) => (
-                        <ImageIndex
-                            key={String(index)}
+                    imagesUrl.map((item, index) => (
+                        <Bullet
+                            key={String(item.id)}
                             active={index === imageIndex}
                         />
                     ))
@@ -40,12 +45,14 @@ export function ImageSlider({imageUrl} : Props){
             </ImageIndexes>
             
             <FlatList
-                data={imageUrl}
-                keyExtractor={key => key}
+                data={imagesUrl}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <CarImageWrapper>
                         <CarImage
-                            source={{ uri: item }}
+                            source={{
+                                uri: item.photo
+                            }}
                             resizeMode="contain"
                         />
                     </CarImageWrapper>
@@ -54,7 +61,6 @@ export function ImageSlider({imageUrl} : Props){
                 showsHorizontalScrollIndicator={false}
                 onViewableItemsChanged={indexChanged.current}
             />
-            
         </Container>
     );
 }
