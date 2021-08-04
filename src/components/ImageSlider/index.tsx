@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { FlatList, ViewToken } from 'react-native';
-import FastImage from 'react-native-fast-image';
 
 import { Bullet } from '../Bullet';
 
@@ -35,9 +34,9 @@ export function ImageSlider({imagesUrl} : Props){
         <Container>
             <ImageIndexes>
                 {
-                    imagesUrl.map((item, index) => (
+                    imagesUrl.map((_, index) => (
                         <Bullet
-                            key={String(item.id)}
+                            key={String(index)}
                             active={index === imageIndex}
                         />
                     ))
