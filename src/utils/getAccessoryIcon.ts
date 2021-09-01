@@ -8,9 +8,8 @@ import ExchangeSvg from '../assets/exchange.svg';
 import PeopleSvg from '../assets/people.svg';
 import CarSvg from '../assets/car.svg';
 
-export function getAccessoryIcon(type: string){
+export const getAccessoryIcon = (type: string) => {
     switch (type) {
-
         case 'speed':
             return SpeedSvg;
 

@@ -46,7 +46,6 @@ export function SignIn(){
             });
     
             await schema.validate({ email, password });
-            Alert.alert('Tudo certo!');
 
             signIn({ email, password });
         } catch(error) {
@@ -59,7 +58,6 @@ export function SignIn(){
                 )
             }
         }
-
     }
 
     function handleNewAccount(){
@@ -114,6 +112,8 @@ export function SignIn(){
                     <PasswordInput
                         iconName="lock"
                         placeholder="Senha"
+                        autoCorrect={false}
+                        autoCapitalize="none"
                         onChangeText={setPassword}
                         value={password}
                     />
@@ -123,16 +123,16 @@ export function SignIn(){
                     <Button
                         title="Login"
                         onPress={handleSignIn}
-                        enabled={false}
+                        enabled={true}
                         loading={false}
                     />
                     <Button
                         title="Criar conta gratuita"
                         color={theme.colors.background_secondary}
-                        light={true}
                         onPress={handleNewAccount}
                         enabled={true}
                         loading={false}
+                        light
                     />
                 </Footer>
             </Container>

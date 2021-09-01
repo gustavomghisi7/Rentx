@@ -48,7 +48,7 @@ export function SignUpSecondStep(){
         navigation.goBack();
     }
 
-    async function handleRegister(){
+    const handleRegister = async () => {
         if(!password || !passwordConfirm){
             return Alert.alert('Informe a senha e a confirmação');
         }
@@ -57,13 +57,15 @@ export function SignUpSecondStep(){
             return Alert.alert('As senhas não são iguais');
         }
 
+        //Enviar e-mail para api cadastrar
         await api.post('/users', {
             name: user.name,
             email: user.email,
-            password,
             driver_license: user.driveLicense,
+            password,
         })
         .then( () => {
+            //Chamar a tela de cadastrado
             navigation.navigate('Confirmation', {
                 nextScreenRoute: 'SignIn',
                 title: 'Conta Criada!',
@@ -121,6 +123,7 @@ export function SignUpSecondStep(){
                     <Button
                         color={theme.colors.success}
                         title="Cadastrar"
+                        enabled={true}
                         onPress={handleRegister}
                     />
 
