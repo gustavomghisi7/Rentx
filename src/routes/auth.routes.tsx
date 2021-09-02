@@ -9,7 +9,7 @@ import { Confirmation } from '../screens/Confirmation';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export function AuthRoutes(){
+export const AuthRoutes = () => {
     return(
         <Navigator
             headerMode="none"
@@ -19,18 +19,22 @@ export function AuthRoutes(){
                 name="Splash"
                 component={Splash}
             />
+
             <Screen
                 name="SignIn"
                 component={SignIn}
             />
+
             <Screen
                 name="SignUpFirstStep"
                 component={SignUpFirstStep}
             />
-             <Screen
+
+            <Screen
                 name="SignUpSecondStep"
                 component={SignUpSecondStep}
             />
+            
             <Screen
                 name="Confirmation"
                 component={Confirmation}

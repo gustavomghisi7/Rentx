@@ -1,12 +1,11 @@
 import React, { ReactNode } from 'react';
-
 import { AuthProvider } from './auth';
 
 interface AppProviderProps {
     children: ReactNode;
 }
 
-function AppProvider({ children } : AppProviderProps ){
+const AppProvider = ({ children } : AppProviderProps ) => {
     return(
         <AuthProvider>
             { children }

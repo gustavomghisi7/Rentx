@@ -7,7 +7,7 @@ import {
     Container
 } from './styles';
 
-export function LoadAnimation(){
+export const LoadAnimation = () => {
     return(
         <Container>
             <LottieView

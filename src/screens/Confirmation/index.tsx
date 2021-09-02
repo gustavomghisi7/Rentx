@@ -21,14 +21,14 @@ interface Params {
     nextScreenRoute: string;
 }
 
-export function Confirmation(){
+export const Confirmation = () => {
     const { width } = useWindowDimensions();
-
     const navigation = useNavigation();
+    
     const route = useRoute();
     const { title, message, nextScreenRoute } = route.params as Params;
 
-    function handleConfirm() {
+    const handleConfirm = () => {
         navigation.navigate(nextScreenRoute)
     }
 
@@ -44,12 +44,8 @@ export function Confirmation(){
 
             <Content>
                 <DoneSvg width={80} height={80} />
-
                 <Title>{title}</Title>
-
-                <Message>
-                    {message}
-                </Message>
+                <Message>{message}</Message>
             </Content>
 
             <Footer>

@@ -13,7 +13,7 @@ import { Profile } from '../screens/Profile';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-export function AppTabRoutes(){
+export const AppTabRoutes = () => {
     const theme = useTheme();
 
     return(
@@ -33,30 +33,31 @@ export function AppTabRoutes(){
                 name="Home"
                 component={AppStackRoutes}
                 options={{
-                    tabBarIcon: (({ color }) => (
+                    tabBarIcon: ({ color }) => (
                         <HomeSvg width={24} height={24} fill={color} />
-                    ))
+                    )
                 }}
             />
+
             <Screen
                 name="MyCars"
                 component={MyCars}
                 options={{
-                    tabBarIcon: (({ color }) => (
+                    tabBarIcon: ({ color }) => (
                         <CarSvg width={24} height={24} fill={color} />
-                    ))
+                    )
                 }}
             />
+
             <Screen
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarIcon: (({ color }) => (
+                    tabBarIcon: ({ color }) => (
                         <PeopleSvg width={24} height={24} fill={color} />
-                    ))
+                    )
                 }}
             />
         </Navigator>
     );
 }
-

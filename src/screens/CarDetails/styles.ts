@@ -20,7 +20,15 @@ export const CarImages = styled.View`
     margin-top: ${getStatusBarHeight() + 32}px;
 `;
 
-export const ContentDetails = styled.View`
+export const Content = styled.ScrollView.attrs({
+    contentContainerStyle: {
+        padding: 24,
+        alignItems: 'center'
+    },
+    showsVerticalScrollIndicator: false
+})``;
+
+export const Details = styled.View`
     width: 100%;
 
     flex-direction: row;
@@ -54,7 +62,6 @@ export const Period = styled.Text`
     font-family: ${({ theme }) => theme.fonts.secondary_500};
     color: ${({ theme }) => theme.colors.text_datail};
     font-size: ${RFValue(10)}px;
-
     text-transform: uppercase;
 `;
 
@@ -68,20 +75,18 @@ export const About = styled.Text`
     font-family: ${({ theme }) => theme.fonts.primary_400};
     color: ${({ theme }) => theme.colors.text};
     font-size: ${RFValue(12)}px;
+
     text-align: justify;
+    line-height: ${RFValue(25)}px;
 
     margin-top: 20px;
-    line-height: ${RFValue(25)}px;
 `;
 
 export const Accessories = styled.View`
     width: 100%;
-
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
-
     margin-top: 16px;
 `;
 
@@ -97,5 +102,9 @@ export const OfflineInfo = styled.Text`
     font-family: ${({ theme }) => theme.fonts.primary_400};
     color: ${({ theme }) => theme.colors.main};
     font-size: ${RFValue(10)}px;
+
     text-align: center;
+    line-height: ${RFValue(25)}px;
+
+    margin-top: 23px;
 `;

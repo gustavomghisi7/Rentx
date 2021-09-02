@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 
 interface DateValueProps {
     selected: boolean;
@@ -19,7 +19,7 @@ export const Header = styled.View`
 
     justify-content: center;
     padding: 25px;
-    padding-top: ${getStatusBarHeight() + 30}px;
+    padding-top: ${getBottomSpace()+30}px;
 `;
 
 export const Title = styled.Text`
@@ -64,7 +64,7 @@ export const DateValue = styled.Text<DateValueProps>`
 
 export const Content = styled.ScrollView.attrs({
     contentContainerStyle: {
-        padding: 24
+        paddingBottom: 24
     },
     showsVerticalScrollIndicator: false
 })``;

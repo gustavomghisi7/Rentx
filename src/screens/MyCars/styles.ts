@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
     flex: 1;
@@ -16,7 +16,7 @@ export const Header = styled.View`
 
     justify-content: center;
     padding: 25px;
-    padding-top: ${getStatusBarHeight() + 30}px;
+    padding-top: ${getBottomSpace()+30}px;
 `;
 
 export const Title = styled.Text`
@@ -31,7 +31,6 @@ export const SubTitle = styled.Text`
     color: ${({ theme }) => theme.colors.shape};
     font-family: ${({ theme }) => theme.fonts.secondary_400};
     font-size: ${RFValue(15)}px;
-
     margin-top: 24px;
 `;
 

@@ -8,7 +8,7 @@ interface Props {
     active?: boolean;
 }
 
-export function Bullet({ active = false } : Props){
+export const Bullet = ({ active = false } : Props) => {
     return(
         <Container active={active} />
     );

@@ -10,10 +10,10 @@ interface Props extends RectButtonProps{
     title: string;
 }
 
-export function ConfirmButton({
+export const ConfirmButton = ({
     title,
     ...rest
-} : Props){
+} : Props) => {
     return(
         <Container {...rest}>
             <Title>{title}</Title>

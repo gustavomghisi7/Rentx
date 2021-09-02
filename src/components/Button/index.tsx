@@ -15,14 +15,14 @@ interface Props extends RectButtonProps {
     light?: boolean;
 }
 
-export function Button({
+export const Button = ({
     title,
     color,
     onPress,
     enabled = true,
     loading = false,
     light = false,
-} : Props){
+} : Props) => {
     const theme = useTheme();
 
     return (

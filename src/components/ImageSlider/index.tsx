@@ -22,7 +22,7 @@ interface ChangeImageProps {
     changed: ViewToken[];
 }
 
-export function ImageSlider({imagesUrl} : Props){
+export const ImageSlider = ({imagesUrl} : Props) => {
     const [imageIndex, setImageIndex] = useState(0);
 
     const indexChanged = useRef((info: ChangeImageProps) => {

@@ -6,7 +6,7 @@ import { AppTabRoutes } from './app.tab.routes'
 import { AuthRoutes } from './auth.routes'
 import { LoadAnimation } from '../components/LoadAnimation';
 
-export function Routes(){
+export const Routes = () => {
     const { user, loading } = useAuth();
 
     return(

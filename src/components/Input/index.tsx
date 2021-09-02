@@ -14,11 +14,11 @@ interface Props extends TextInputProps {
     value?: string;
 }
 
-export function Input({
+export const Input = ({
     iconName,
     value,
     ...rest
-} : Props ){
+} : Props ) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 

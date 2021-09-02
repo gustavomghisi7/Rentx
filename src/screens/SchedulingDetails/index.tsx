@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { useTheme } from 'styled-components/native';
+import { useTheme } from 'styled-components';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useNetInfo } from '@react-native-community/netinfo';
 
@@ -14,7 +14,7 @@ import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory';
 import { Button } from '../../components/Button';
 
-import { CarDTO } from '../../dtos/CatDTO';
+import CarDTO from '../../dtos/CatDTO';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import { getPlatformDate } from '../../utils/getPlatformDate';
 import { api } from '../../services/api';
@@ -51,11 +51,10 @@ interface Params {
 }
 
 interface RentalPeriod {
-    start: string;
-    end: string;
-}
+    startFormatted: string;
+    endFormatted: string;
 
-export function SchedulingDetails(){
+export const SchedulingDetails = () => {
     const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO);
     const [loading, setLoading] = useState(false);
     const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod);
@@ -69,7 +68,7 @@ export function SchedulingDetails(){
 
     const rentTotal = Number(dates.length * car.price)
 
-    async function handleConfirmRental() {
+    const handleConfirmRental = async () => {
         setLoading(true);
 
         await api.post('schedules_byuser', {

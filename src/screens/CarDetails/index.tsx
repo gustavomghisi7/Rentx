@@ -13,7 +13,7 @@ import Animated, {
     Extrapolate
 } from 'react-native-reanimated';
 
-import { CarDTO } from '../../dtos/CatDTO';
+import CarDTO from '../../dtos/CatDTO';
 import { Car as ModelCar } from '../../database/model/Car';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
@@ -27,7 +27,7 @@ import {
     Container,
     Header,
     CarImages,
-    ContentDetails,
+    Details,
     Description,
     Brand,
     Name,
@@ -53,8 +53,8 @@ export const CarDetails = () => {
 
     const theme = useTheme();
     const netInfo = useNetInfo();
-    
     const scrollY = useSharedValue(0);
+
     const scrollHandler = useAnimatedScrollHandler(event => {
         scrollY.value = event.contentOffset.y;
     });
@@ -79,7 +79,7 @@ export const CarDetails = () => {
                 Extrapolate.CLAMP
             )
         }
-    })
+    });
 
     function handleConfirmRental() {
         navigation.navigate('Scheduling', { car })
@@ -90,7 +90,7 @@ export const CarDetails = () => {
     }
 
     useEffect(() => {
-        async function fetchCarUpdated(){
+        const fetchCarUpdated = async () => {
             const response = await api.get(`/cars/${car.id}`);
             setCarUpdated(response.data);
         }
@@ -108,16 +108,10 @@ export const CarDetails = () => {
                 backgroundColor="transparent"
             />
             <Animated.View
-                style={[
-                    headerStyleAnimation,
-                    styles.header,
-                    { backgroundColor: theme.colors.background_secondary }
-                ]}
+                style={[headerStyleAnimation]}
             >
                 <Header>
-                    <BackButton
-                        onPress={handleBack}
-                    />
+                    <BackButton onPress={handleBack} />
                 </Header>
 
                 <Animated.View style={sliderCarsStyleAnimation}>
@@ -141,7 +135,7 @@ export const CarDetails = () => {
                 onScroll={scrollHandler}
                 scrollEventThrottle={16}
             >
-                <ContentDetails>
+                <Details>
                     <Description>
                         <Brand>{car.brand}</Brand>
                         <Name>{car.name}</Name>
@@ -153,17 +147,17 @@ export const CarDetails = () => {
                             R$ { netInfo.isConnected === true ? car.price : '...' }
                         </Price>
                     </Rent>
-                </ContentDetails>
+                </Details>
 
                 {
                     carUpdated.accessories && 
                     <Accessories>
                         {
-                            carUpdated.accessories.map(accessory => (
+                            carUpdated.accessories.map(item => (
                                 <Accessory
-                                    key={accessory.type}
-                                    name={accessory.name}
-                                    icon={getAccessoryIcon(accessory.type)}
+                                    key={item.type}
+                                    name={item.name}
+                                    icon={getAccessoryIcon(item.type)}
                                 />
                             ))
                         }
@@ -192,11 +186,3 @@ export const CarDetails = () => {
         </Container>
     );
 }
-
-const styles = StyleSheet.create({
-    header: {
-        position: 'absolute',
-        overflow: 'hidden',
-        zIndex: 1,
-    }
-})

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useNetInfo } from '@react-native-community/netinfo';
 import * as Yup from 'yup';
@@ -36,7 +36,7 @@ import {
     Section
 } from './styles';
 
-export function Profile(){
+export const Profile = () => {
     const { user, signOut, updatedUser } = useAuth();
     const netInfo = useNetInfo();
 
@@ -48,11 +48,11 @@ export function Profile(){
     const [name, setName] = useState(user.name);
     const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
-    function handleBack(){
+    const handleBack = () => {
         navigation.goBack();
     }
 
-    function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit'){
+    const handleOptionChange = (optionSelected: 'dataEdit' | 'passwordEdit') => {
         if(netInfo.isConnected === false && optionSelected === 'passwordEdit'){
             Alert.alert('Você está Offline', 'Para mudar a senha, conecte-se a internet');
         } else {
@@ -60,7 +60,7 @@ export function Profile(){
         }
     }
 
-    async function handleAvatarSelect(){
+    const handleSelectAvatar = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
@@ -77,7 +77,7 @@ export function Profile(){
         }
     }
 
-    async function handleProfileUpdate(){
+    const handleProfileUpdate = async () => {
         try {
             const schema = Yup.object().shape({
                 driverLicense: Yup.string()
@@ -102,7 +102,6 @@ export function Profile(){
             Alert.alert('Perfil Atualizado!')
 
         } catch(error) {
-            console.log(error);
             if(error instanceof Yup.ValidationError){
                 Alert.alert('Opa', error.message);
             } else {
@@ -112,20 +111,20 @@ export function Profile(){
         }
     }
 
-    async function handleSingOut(){
+    const handleSingOut = async () => {
         Alert.alert(
             'Tem certeza?',
             'Se você sair, irá precisar de internet para conectar-se novamente.',
             [
                 {
                     text: 'Cancelar',
-                    onPress: () => {}
+                    onPress: () => {},
+                    style: "cancel"
                 },
                 {
-                    text: 'Sair',
+                    text: 'Confirmar',
                     onPress: () => signOut()
                 }
-
             ]
         )
     }
@@ -152,7 +151,7 @@ export function Profile(){
 
                         <PhotoContainer>
                             { !!avatar && <Photo source={{ uri: avatar }} /> }
-                            <PhotoButton onPress={handleAvatarSelect}>
+                            <PhotoButton onPress={handleSelectAvatar}>
                                 <Feather
                                     name="camera"
                                     size={24}
@@ -174,7 +173,7 @@ export function Profile(){
                             </Option>
                             <Option
                                 active={option === 'passwordEdit'}
-                                onPress={() => handleOptionChange('dataEdit')}
+                                onPress={() => handleOptionChange('passwordEdit')}
                             >
                                 <OptionTitle active={option === 'passwordEdit'}>
                                     Trocar Senha

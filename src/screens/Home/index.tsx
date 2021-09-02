@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
 import { StatusBar } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNetInfo } from '@react-native-community/netinfo';
@@ -10,7 +10,7 @@ import { database } from '../../database';
 import { api } from '../../services/api';
 
 import Logo from '../../assets/logo.svg';
-import { CarDTO } from '../../dtos/CatDTO';
+import CarDTO from '../../dtos/CatDTO';
 
 import { Car } from '../../components/Car';
 import { Car as ModelCar } from '../../database/model/Car';
@@ -24,25 +24,25 @@ import {
     CarList
 } from './styles';
 
-export function Home(){
+export const Home = () => {
     const [cars, setCars] = useState<ModelCar[]>([]);
     const [loading, setLoading] = useState(true);
 
     const netInfo = useNetInfo();
     const navigation = useNavigation();
 
-    function handleCarDetails(car: CarDTO){
+    const handleCarDetails = (car: CarDTO) => {
         navigation.navigate('CarDetails', { car });
     }
 
-    async function offlineSynchronize(){
+    const offlineSynchronize = async () => {
         await synchronize({
             database,
             pullChanges: async ({ lastPulledAt }) => {
-                const response = await api
+                const {data} = await api
                 .get(`cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`);
 
-                const { changes, latestVersion } = response.data;
+                const { changes, latestVersion } = data;
                 return { changes, timestamp: latestVersion }
             },
             pushChanges: async ({ changes }) => {
@@ -55,13 +55,13 @@ export function Home(){
     useEffect(() => {
         let isMounted = true;
         
-        async function fetchCars() {
+        const fetchCars = async () => {
             try {
                 const carCollection = database.get<ModelCar>('cars');
-                const cars = await carCollection.query().fetch();
+                const data = await carCollection.query().fetch();
 
                 if(isMounted){
-                    setLoading(false);
+                    setCars(data);
                 }
 
             } catch (error) {
@@ -98,21 +98,23 @@ export function Home(){
                         height={RFValue(12)}
                     />
                     {
-                        !!loading &&
+                        !loading &&
                         <TotalCars>
                             Total de {cars.length} carros
                         </TotalCars>
                     }
-
                 </HeaderContent>
             </Header>
 
             { loading ? <LoadAnimation /> : 
                 <CarList
                     data={cars}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => String(item.id)}
                     renderItem={({ item }) =>
-                        <Car data={item} onPress={() => handleCarDetails(item)} />
+                        <Car
+                            data={item}
+                            onPress={() => handleCarDetails(item)} 
+                        />
                     }
                 />
             }

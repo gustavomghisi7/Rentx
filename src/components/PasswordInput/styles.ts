@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { TextInput } from "react-native";
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 interface Props {
     isFocused: boolean;
@@ -25,6 +26,10 @@ export const IconContainer = styled.View<Props>`
         border-bottom-width: 2px;
         border-bottom-color: ${theme.colors.main}
     `};
+`;
+
+export const ChangePassVisibilityButton = styled(BorderlessButton)`
+
 `;
 
 export const InputText = styled(TextInput)<Props>`

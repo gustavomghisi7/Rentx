@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar, FlatList } from 'react-native';
-import { useNavigation, useIsFocused } from '@react-navigation/core';
+import { useNavigation, useIsFocused, useRoute } from '@react-navigation/core';
 import { useTheme } from 'styled-components';
 import { AntDesign } from '@expo/vector-icons';
 import { format, parseISO } from 'date-fns';
@@ -32,22 +32,22 @@ interface DataProps{
     end_date: string;
 }
 
-export function MyCars() {
+export const MyCars = () => {
     const [cars, setCars] = useState<DataProps[]>([]);
     const [loading, setLoading] = useState(true);
-    const screenIsFocus = useIsFocused();
+    const isFocus = useIsFocused();
 
     const theme = useTheme();
     const navigation = useNavigation();
 
-    function handleBack(){
+    const handleBack = () => {
         navigation.goBack();
     }
 
     useEffect( () => {
-        async function fetchCars(){
+        const fetchCars = async () => {
             try {
-                const response = await api.get('/rentals');
+                const response = await api.get(`/rentals`);
                 const dataFormatted = response.data.map((data: DataProps) => {
                     return {
                         id: data.id,
@@ -67,7 +67,7 @@ export function MyCars() {
         }
 
         fetchCars();
-    }, [screenIsFocus]);
+    }, [isFocus]);
 
 
     return (
@@ -102,7 +102,7 @@ export function MyCars() {
 
                     <FlatList
                         data={cars}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => String(item.id)}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) => (
                             <CarWrapper>
