@@ -52,7 +52,7 @@ export function Splash(){
         }
     });
 
-    function startApp(){
+    const startApp = () => {
         navigation.navigate('SignIn');
     }
 

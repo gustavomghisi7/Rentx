@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
-import { useTheme } from 'styled-components';
+import { StatusBar } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useNetInfo } from '@react-native-community/netinfo';
@@ -51,15 +50,14 @@ export const CarDetails = () => {
     const route = useRoute();
     const { car } = route.params as Params;
 
-    const theme = useTheme();
     const netInfo = useNetInfo();
     const scrollY = useSharedValue(0);
 
-    const scrollHandler = useAnimatedScrollHandler(event => {
+    const scrollHandler = useAnimatedScrollHandler( event => {
         scrollY.value = event.contentOffset.y;
     });
 
-    const headerStyleAnimation = useAnimatedStyle(() => {
+    const headerStyleAnimation = useAnimatedStyle( () => {
         return {
             height: interpolate(
                 scrollY.value,
@@ -70,7 +68,7 @@ export const CarDetails = () => {
         }
     });
 
-    const sliderCarsStyleAnimation = useAnimatedStyle(() => {
+    const sliderCarsStyleAnimation = useAnimatedStyle( () => {
         return {
             opacity: interpolate(
                 scrollY.value,
@@ -98,7 +96,7 @@ export const CarDetails = () => {
         if(netInfo.isConnected === true){
             fetchCarUpdated()
         }
-    }, [netInfo.isConnected])
+    }, [netInfo.isConnected]);
 
     return(
         <Container>

@@ -212,11 +212,11 @@ export const Profile = () => {
                                 />
                                 <PasswordInput
                                     iconName="lock"
-                                    placeholder="Nova atual"
+                                    placeholder="Nova Senha"
                                 />
                                 <PasswordInput
                                     iconName="lock"
-                                    placeholder="Repetir Senha"
+                                    placeholder="Digite Novamente"
                                 />
                             </Section>
                         }

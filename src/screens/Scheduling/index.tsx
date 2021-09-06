@@ -51,10 +51,10 @@ export const Scheduling = () => {
     const route = useRoute();
     const { car } = route.params as Params; 
 
-    const handleSchedulingDetailsRoutes = () =>{
+    const handleSchedulingDetailsRoutes = () => {
         if (!rentalPeriod.start || !rentalPeriod.end) {
             Alert.alert("Selecione o intervalo  para alugar.");
-        }else{
+        } else {
             navigation.navigate('SchedulingDetails', {
                 car,
                 dates:Object.keys(markedDates)
@@ -85,7 +85,7 @@ export const Scheduling = () => {
 
         setRentalPeriod({
             start: start.timestamp,
-            end:end.timestamp,
+            end: end.timestamp,
             startFormatted: format(getPlatformDate(new Date(firstDate)), 'dd/MM/yyyy'),
             endFormatted: format(getPlatformDate(new Date(endDate)), 'dd/MM/yyyy'),
         });

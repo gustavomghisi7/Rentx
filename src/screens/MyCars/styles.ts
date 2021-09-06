@@ -16,7 +16,7 @@ export const Header = styled.View`
 
     justify-content: center;
     padding: 25px;
-    padding-top: ${getBottomSpace()+30}px;
+    padding-top: ${getBottomSpace() + 30}px;
 `;
 
 export const Title = styled.Text`
@@ -58,7 +58,7 @@ export const AppointmentsTitle = styled.Text`
 
 export const AppointmentsQuantity = styled.Text`
     color: ${({ theme }) => theme.colors.title};
-    font-family: ${({ theme }) => theme.fonts.primary_400};
+    font-family: ${({ theme }) => theme.fonts.primary_500};
     font-size: ${RFValue(15)}px;
 `;
 

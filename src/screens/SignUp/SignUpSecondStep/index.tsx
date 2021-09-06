@@ -30,11 +30,11 @@ interface Params {
     user: {
         name: string;
         email: string;
-        driveLicense: string;
+        driverLicense: string;
     }
 }
 
-export function SignUpSecondStep(){
+export const SignUpSecondStep = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
@@ -61,7 +61,7 @@ export function SignUpSecondStep(){
         await api.post('/users', {
             name: user.name,
             email: user.email,
-            driver_license: user.driveLicense,
+            driver_license: user.driverLicense,
             password,
         })
         .then( () => {

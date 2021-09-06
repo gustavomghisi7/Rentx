@@ -28,7 +28,7 @@ import {
     Footer
 } from './styles';
 
-export function SignIn(){
+export const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -46,8 +46,8 @@ export function SignIn(){
             });
     
             await schema.validate({ email, password });
-
             signIn({ email, password });
+
         } catch(error) {
             if(error instanceof Yup.ValidationError){
                 Alert.alert('Opa', error.message);
@@ -60,7 +60,7 @@ export function SignIn(){
         }
     }
 
-    function handleNewAccount(){
+    const handleNewAccount = () => {
         navigation.navigate('SignUpFirstStep');
     }
 
@@ -106,7 +106,7 @@ export function SignIn(){
                         autoCorrect={false}
                         autoCapitalize='none'
                         onChangeText={setEmail}
-                        value={email}
+                        value={email.trim()}
                     />
 
                     <PasswordInput

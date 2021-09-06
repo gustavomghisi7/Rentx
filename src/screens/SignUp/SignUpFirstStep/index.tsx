@@ -31,15 +31,16 @@ export function SignUpFirstStep(){
 
     const navigation = useNavigation();
 
-    function handleBack() {
+    const handleBack = () => {
         navigation.goBack();
     }
 
-    async function handleNextStep(){
+    const handleNextStep = async () => {
         try {
             const schema = Yup.object().shape({
                 driverLicense: Yup.string()
-                    .required('CNH é obrigatória'),
+                    .required('CNH é obrigatória')
+                    .min(11),
                 
                 email: Yup.string()
                     .email('E-mail inválido')
@@ -55,7 +56,7 @@ export function SignUpFirstStep(){
             navigation.navigate('SignUpSecondStep', { user: data });
         } catch (error) {
             if(error instanceof Yup.ValidationError){
-                return Alert.alert('Opa', error.message);
+                Alert.alert('Opa', error.message);
             }
         }
     }

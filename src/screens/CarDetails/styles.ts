@@ -12,6 +12,7 @@ export const Header = styled.View`
     justify-content: space-between;
     align-items: center;
 
+    position: absolute;
     margin-top: ${getStatusBarHeight() + 18}px;
     margin-left: 24px;
 `;
@@ -30,11 +31,9 @@ export const Content = styled.ScrollView.attrs({
 
 export const Details = styled.View`
     width: 100%;
-
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     margin-top: 38px;
 `;
 

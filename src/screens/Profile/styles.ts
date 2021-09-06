@@ -14,9 +14,7 @@ export const Container = styled.View`
 export const Header = styled.View`
     width: 100%;
     height: 227px;
-
     background-color: ${({ theme }) => theme.colors.header};
-
     padding: 0 24px;
     align-items: center;
 `;
@@ -98,6 +96,4 @@ export const OptionTitle = styled.Text<OptionProps>`
     active ? theme.colors.header : theme.colors.text_datail};
 `;
 
-export const Section = styled.View`
-    
-`;
+export const Section = styled.View``;

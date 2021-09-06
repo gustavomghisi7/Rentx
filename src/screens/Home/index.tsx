@@ -113,7 +113,7 @@ export const Home = () => {
                     renderItem={({ item }) =>
                         <Car
                             data={item}
-                            onPress={() => handleCarDetails(item)} 
+                            onPress={ () => handleCarDetails(item)} 
                         />
                     }
                 />

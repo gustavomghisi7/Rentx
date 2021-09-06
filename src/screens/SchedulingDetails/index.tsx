@@ -53,10 +53,11 @@ interface Params {
 interface RentalPeriod {
     startFormatted: string;
     endFormatted: string;
+}
 
 export const SchedulingDetails = () => {
     const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod);
 
     const theme = useTheme();
@@ -74,8 +75,8 @@ export const SchedulingDetails = () => {
         await api.post('schedules_byuser', {
             user_id: 1,
             car_id: car.id,
-            start_date: new Date(dates[0]),
-            end_date: new Date(dates[dates.length - 1]),
+            start_date: new Date (dates[0]),
+            end_date: new Date (dates[dates.length - 1]),
             total: rentTotal
         }).then( () => {
             navigation.navigate('Confirmation', {
@@ -85,7 +86,7 @@ export const SchedulingDetails = () => {
             })
         })
         .catch( () => {
-            setLoading(false);
+            setLoading(true);
             Alert.alert('Não foi possível confirmar o agendamento')
         })
     }
@@ -96,13 +97,13 @@ export const SchedulingDetails = () => {
 
     useEffect( () => {
         setRentalPeriod({
-            start: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
-            end: format(getPlatformDate(new Date(dates[dates.length -1])), 'dd/MM/yyyy'),
+            startFormatted: format(getPlatformDate(new Date (dates[0])), 'dd/MM/yyyy'),
+            endFormatted: format(getPlatformDate(new Date (dates[dates.length -1])), 'dd/MM/yyyy'),
         })
     }, [])
 
-    useEffect(() => {
-        async function fetchCarUpdated(){
+    useEffect(() => { 
+        const fetchCarUpdated = async () => {
             const response = await api.get(`/cars/${car.id}`);
             setCarUpdated(response.data);
         }
@@ -142,11 +143,11 @@ export const SchedulingDetails = () => {
 
                 <Accessories>
                     {
-                        car.accessories.map(accessory => (
+                        car.accessories.map(item => (
                             <Accessory
-                                key={accessory.type}
-                                name={accessory.name}
-                                icon={getAccessoryIcon(accessory.type)}
+                                key={item.type}
+                                name={item.name}
+                                icon={getAccessoryIcon(item.type)}
                             />
                         ))
                         
@@ -163,7 +164,7 @@ export const SchedulingDetails = () => {
                     </CalendarIcon>
                     <DateInfo>
                         <DateTitle>DE</DateTitle>
-                        <DateValue>{rentalPeriod.start}</DateValue>
+                        <DateValue>{rentalPeriod.startFormatted}</DateValue>
                     </DateInfo>
 
                     <Feather
@@ -174,7 +175,7 @@ export const SchedulingDetails = () => {
 
                     <DateInfo>
                         <DateTitle>ATÉ</DateTitle>
-                        <DateValue>{rentalPeriod.end}</DateValue>
+                        <DateValue>{rentalPeriod.endFormatted}</DateValue>
                     </DateInfo>
                 </RentalPeriod>
 
@@ -192,8 +193,8 @@ export const SchedulingDetails = () => {
                     title="Alugar agora"
                     color={theme.colors.success}
                     onPress={handleConfirmRental}
-                    enabled={!loading}
-                    loading={loading}
+                    enabled={loading}
+                    loading={!loading}
                 />
             </Footer>
         </Container>

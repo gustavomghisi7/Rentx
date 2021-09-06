@@ -104,7 +104,7 @@ export const MyCars = () => {
                         data={cars}
                         keyExtractor={item => String(item.id)}
                         showsVerticalScrollIndicator={false}
-                        renderItem={({item}) => (
+                        renderItem={({ item }) => (
                             <CarWrapper>
                                 <Car data={item.car} />
                                 <CarFooter>
