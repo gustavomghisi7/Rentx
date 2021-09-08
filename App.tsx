@@ -1,17 +1,17 @@
 import React from 'react';
 import { LogBox } from 'react-native';
 import AppLoading from 'expo-app-loading';
-import { ThemeProvider } from 'styled-components/native';
+import { ThemeProvider } from 'styled-components';
 import { AppProvider } from './src/hooks';
 import {
-    useFonts,
-    Inter_400Regular,
-    Inter_500Medium,
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium,
 } from '@expo-google-fonts/inter';
 import {
-    Archivo_400Regular,
-    Archivo_500Medium,
-    Archivo_600SemiBold,
+  Archivo_400Regular,
+  Archivo_500Medium,
+  Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
 import { Routes } from './src/routes';
 import theme from './src/styles/theme';

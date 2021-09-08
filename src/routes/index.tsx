@@ -9,7 +9,7 @@ import { LoadAnimation } from '../components/LoadAnimation';
 export const Routes = () => {
     const { user, loading } = useAuth();
 
-    return(
+    return (
         loading ? <LoadAnimation /> : 
         <NavigationContainer>
             { user.id ? <AppTabRoutes /> : <AuthRoutes /> }

@@ -10,7 +10,7 @@ import { Confirmation } from '../screens/Confirmation';
 const { Navigator, Screen } = createStackNavigator();
 
 export const AuthRoutes = () => {
-    return(
+    return (
         <Navigator
             headerMode="none"
             initialRouteName="Splash"

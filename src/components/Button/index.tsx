@@ -19,8 +19,8 @@ export const Button = ({
     title,
     color,
     onPress,
+    loading,
     enabled = true,
-    loading = false,
     light = false,
 } : Props) => {
     const theme = useTheme();

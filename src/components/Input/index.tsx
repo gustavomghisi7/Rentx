@@ -24,11 +24,11 @@ export const Input = ({
 
     const theme = useTheme();
 
-    function handleInputFocus() {
+    const handleInputFocus = () => {
         setIsFocused(true);
     }
 
-    function handleInputBlur() {
+    const handleInputBlur = () => {
         setIsFocused(false);
         setIsFilled(!!value);
     }

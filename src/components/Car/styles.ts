@@ -55,9 +55,11 @@ export const Period = styled.Text`
 `;
 
 export const Price = styled.Text`
-    font-family: ${({ theme }) => theme.fonts.secondary_500};
+    font-family: ${({ theme }) => theme.fonts.secondary_600};
     color: ${({ theme }) => theme.colors.main};
     font-size: ${RFValue(15)}px;
+
+    text-transform: uppercase;
 `;
 
 export const Type = styled.View`

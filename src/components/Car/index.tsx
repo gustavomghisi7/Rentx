@@ -1,7 +1,6 @@
 import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
 import { useNetInfo } from '@react-native-community/netinfo';
-import CatDTO from '../../dtos/CatDTO';
 import { Car as ModelCar } from '../../database/model/Car';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 

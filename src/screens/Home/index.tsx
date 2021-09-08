@@ -10,7 +10,6 @@ import { database } from '../../database';
 import { api } from '../../services/api';
 
 import Logo from '../../assets/logo.svg';
-import CarDTO from '../../dtos/CatDTO';
 
 import { Car } from '../../components/Car';
 import { Car as ModelCar } from '../../database/model/Car';
@@ -31,7 +30,7 @@ export const Home = () => {
     const netInfo = useNetInfo();
     const navigation = useNavigation();
 
-    const handleCarDetails = (car: CarDTO) => {
+    const handleCarDetails = (car: ModelCar) => {
         navigation.navigate('CarDetails', { car });
     }
 

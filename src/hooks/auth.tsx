@@ -44,7 +44,7 @@ const AuthProvider = ({ children } : AuthProviderProps) => {
     const [loading, setLoading] = useState(true);
 
     const signIn = async ({ email, password } : SignInCredentials) => {
-        try{
+        try {
             const response = await api.post('/sessions', {
                 email,
                 password
@@ -69,13 +69,12 @@ const AuthProvider = ({ children } : AuthProviderProps) => {
             setData({ ...user, token });
 
         } catch(error) {
-            throw new Error(error)
+            console.log(error);
         }   
     }
 
     const signOut = async () => {
         try {
-
             await database.write(async () => {
                 const userSelected = database.get<ModelUser>('users').find(data.id);
                 (await userSelected).destroyPermanently();
@@ -84,7 +83,7 @@ const AuthProvider = ({ children } : AuthProviderProps) => {
             setData({} as User);
             
         } catch (error) {
-            throw new Error(error);
+            console.log(error);
         }
     }
 
@@ -105,7 +104,7 @@ const AuthProvider = ({ children } : AuthProviderProps) => {
             setData(user);
 
         } catch (error) {
-            throw new Error(error);
+            console.log(error);
         }
     }
 
